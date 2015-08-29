@@ -18,8 +18,8 @@ getStockListR = do
     stocks <- runDB $ selectList [] [Asc StockId]
     contents <- forM stocks $ \stock -> do
         let stockId = entityKey stock
-        presents <- runDB $ selectList [PresentStockId ==. stockId] [Asc PresentId]
-        timing <- runDB $ selectList [TimingStockId ==. stockId] [Asc TimingId]
+        presents <- runDB $ selectList [PresentStockId ==. stockId] [Asc PresentCount]
+        timing <- runDB $ selectList [TimingStockId ==. stockId] [Asc TimingDate]
         return (stock, presents, timing)
 
     defaultLayout $(widgetFile "stock/list")

@@ -3,27 +3,60 @@ $if null contents
         登録株式がありません
 $else
     $forall (Entity stockId stock, presents, timings) <- contents
-        <p>
-            #{stockName stock} | #{stockCode stock} | #{stockDesc stock} | #{stockUrl stock} | #{stockNote stock}
-            <a href=@{StockUpdateR stockId}>
-                stock update
-            <a href=@{StockDeleteR stockId}>
-                stock delete
-        $forall (Entity presentId present) <- presents
-            <p>
-                #{presentCount present} | #{presentDesc present}
-                <a href=@{PresentUpdateR presentId}>
-                    present update
-                <a href=@{PresentDeleteR presentId}>
-                    present delete
-        <a href=@{PresentCreateR stockId}>
-            present create
-        $forall (Entity timingId timing) <- timings
-            <p>
-                #{timingDate timing}
-                <a href=@{TimingUpdateR timingId}>
-                    timing update
-                <a href=@{TimingDeleteR timingId}>
-                    timing delete
-        <a href=@{TimingCreateR stockId}>
-            timing create
+        <div .stock>
+            <div .stock__header>
+                #{stockCode stock}
+                <a href=#{stockUrl stock}>
+                    #{stockName stock}
+
+            <hr .stock__separator>
+
+            <table .stock-desc>
+                <tr>
+                    <td .stock-desc__desc>
+                        #{stockDesc stock}
+                    <td .stock-desc__icons>
+                        <a href=@{StockUpdateR stockId}>
+                            <span class="glyphicon glyphicon-edit"></span>
+                        <a href=@{StockDeleteR stockId}>
+                            <span class="glyphicon glyphicon-trash"></span>
+
+            <div .stock__note>
+                #{stockNote stock}
+
+            <hr .stock__separator>
+
+            <div .stock-presents>
+                $forall (Entity presentId present) <- presents
+                    <table .stock-presents>
+                        <tr>
+                            <td .stock-presents__count>
+                                #{presentCount present}
+                            <td .stock-presents__desc>
+                                #{presentDesc present}
+                            <td .stock-presents__icons>
+                                <a href=@{PresentUpdateR presentId}>
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                <a href=@{PresentDeleteR presentId}>
+                                    <span class="glyphicon glyphicon-trash"></span>
+
+                <div .create>
+                    <a href=@{PresentCreateR stockId}>
+                        優待を追加
+
+            <hr .stock__separator>
+
+            $forall (Entity timingId timing) <- timings
+                <table .stock-timings>
+                    <tr>
+                        <td .stock-timings__date>
+                            #{timingDate timing}
+                        <td .stock-timings__icons>
+                            <a href=@{TimingUpdateR timingId}>
+                                <span class="glyphicon glyphicon-edit"></span>
+                            <a href=@{TimingDeleteR timingId}>
+                                <span class="glyphicon glyphicon-trash"></span>
+
+            <div .create>
+                <a href=@{TimingCreateR stockId}>
+                    権利確定日を追加
