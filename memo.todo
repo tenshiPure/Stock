@@ -1,0 +1,13 @@
++ Stock
+ + Name
+ + Code
+ + Desc
+ + [Present]
+ + [Fixed]
+
++ Present
+ + Count
+ + Desc
+
++ Fixed
+ + Date
