@@ -5,3 +5,10 @@
 /robots.txt RobotsR GET
 
 / RootR GET
+
+/stocks                StockListR   GET
+/stock/create          StockCreateR GET POST
+/stock/update/#StockId StockUpdateR GET POST
+/stock/delete/#StockId StockDeleteR GET
+
+/init InitR GET

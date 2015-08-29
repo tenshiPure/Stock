@@ -1,0 +1,11 @@
+$if null contents
+    <span .no-contents>
+        登録株式がありません
+$else
+    $forall (Entity stockId stock) <- contents
+        <p>
+            #{stockName stock} | #{stockCode stock} | #{stockDesc stock} | #{stockUrl stock} | #{stockNote stock}
+            <a href=@{StockUpdateR stockId}>
+                update
+            <a href=@{StockDeleteR stockId}>
+                delete
