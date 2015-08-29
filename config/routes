@@ -11,4 +11,12 @@
 /stock/update/#StockId StockUpdateR GET POST
 /stock/delete/#StockId StockDeleteR GET
 
+/present/create/#StockId   PresentCreateR GET POST
+/present/update/#PresentId PresentUpdateR GET POST
+/present/delete/#PresentId PresentDeleteR GET
+
+/timing/create/#StockId  TimingCreateR GET POST
+/timing/update/#TimingId TimingUpdateR GET POST
+/timing/delete/#TimingId TimingDeleteR GET
+
 /init InitR GET

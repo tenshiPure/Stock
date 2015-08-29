@@ -1,0 +1,3 @@
+<form method=post action=@{TimingCreateR stockId} enctype=#{enctype}>
+    ^{formWidget}
+    <input .submit-button type=submit value=作成>

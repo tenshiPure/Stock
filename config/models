@@ -16,6 +16,6 @@ Present
     desc    Text
     stockId StockId
 
-Fixed
+Timing
     date    Text
     stockId StockId

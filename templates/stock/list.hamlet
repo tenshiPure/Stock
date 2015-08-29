@@ -2,10 +2,28 @@ $if null contents
     <span .no-contents>
         登録株式がありません
 $else
-    $forall (Entity stockId stock) <- contents
+    $forall (Entity stockId stock, presents, timings) <- contents
         <p>
             #{stockName stock} | #{stockCode stock} | #{stockDesc stock} | #{stockUrl stock} | #{stockNote stock}
             <a href=@{StockUpdateR stockId}>
-                update
+                stock update
             <a href=@{StockDeleteR stockId}>
-                delete
+                stock delete
+        $forall (Entity presentId present) <- presents
+            <p>
+                #{presentCount present} | #{presentDesc present}
+                <a href=@{PresentUpdateR presentId}>
+                    present update
+                <a href=@{PresentDeleteR presentId}>
+                    present delete
+        <a href=@{PresentCreateR stockId}>
+            present create
+        $forall (Entity timingId timing) <- timings
+            <p>
+                #{timingDate timing}
+                <a href=@{TimingUpdateR timingId}>
+                    timing update
+                <a href=@{TimingDeleteR timingId}>
+                    timing delete
+        <a href=@{TimingCreateR stockId}>
+            timing create

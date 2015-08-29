@@ -15,7 +15,12 @@ fStock mStock = renderDivs $ Stock
 
 getStockListR :: Handler Html
 getStockListR = do
-    contents <- runDB $ selectList [] [Asc StockId]
+    stocks <- runDB $ selectList [] [Asc StockId]
+    contents <- forM stocks $ \stock -> do
+        let stockId = entityKey stock
+        presents <- runDB $ selectList [PresentStockId ==. stockId] [Asc PresentId]
+        timing <- runDB $ selectList [TimingStockId ==. stockId] [Asc TimingId]
+        return (stock, presents, timing)
 
     defaultLayout $(widgetFile "stock/list")
 

@@ -22,6 +22,8 @@ library
                      Settings.StaticFiles
                      Handler.Common
                      Handler.Stock
+                     Handler.Present
+                     Handler.Timing
                      Handler.Mock
 
     if flag(dev) || flag(library-only)

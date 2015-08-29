@@ -1,0 +1,3 @@
+<form method=post action=@{PresentUpdateR presentId} enctype=#{enctype}>
+    ^{formWidget}
+    <input .submit-button type=submit value=更新>

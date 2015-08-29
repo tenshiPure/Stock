@@ -1,0 +1,3 @@
+<form method=post action=@{TimingUpdateR timingId} enctype=#{enctype}>
+    ^{formWidget}
+    <input .submit-button type=submit value=更新>
