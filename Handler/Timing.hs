@@ -6,8 +6,8 @@ import Import
 
 fTiming :: Maybe Timing -> StockId -> Html -> MForm Handler (FormResult Timing, Widget)
 fTiming mTiming stockId = renderDivs $ Timing
-    <$> areq textField "" (timingDate <$> mTiming)
-    <*> areq hiddenField "" (Just stockId)
+    <$> areq textField   (createSettings [("placeholder", "契約確定日")]) (timingDate <$> mTiming)
+    <*> areq hiddenField ""                                           (Just stockId)
 
 
 getTimingCreateR :: StockId -> Handler Html

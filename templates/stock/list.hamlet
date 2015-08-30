@@ -59,3 +59,6 @@ $else
             <div .create>
                 <a href=@{TimingCreateR stockId}>
                     権利確定日を追加
+
+<a href=@{StockCreateR}>
+    株式を追加

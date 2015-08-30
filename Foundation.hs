@@ -154,3 +154,13 @@ unsafeHandler = Unsafe.fakeHandlerGetLogger appLogger
 -- https://github.com/yesodweb/yesod/wiki/Sending-email
 -- https://github.com/yesodweb/yesod/wiki/Serve-static-files-from-a-separate-domain
 -- https://github.com/yesodweb/yesod/wiki/i18n-messages-in-the-scaffolding
+
+
+createSettings :: [(Text, Text)] -> FieldSettings master
+createSettings attrs = FieldSettings {
+                               fsLabel = "",
+                               fsId = Nothing,
+                               fsName = Nothing,
+                               fsAttrs = attrs,
+                               fsTooltip = Nothing
+                           }

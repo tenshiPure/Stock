@@ -4,18 +4,9 @@
     font-size: 2rem
 }
 
-@media screen and (min-width: 321px) {
-    #main {
-        padding: 0 13px;
-        width: 100%;
-    }
-}
-
-@media screen and (max-width: 320px) {
-    #main {
-        padding: 0 5px;
-        width: 100%;
-    }
+#main {
+    padding: 0 8px;
+    width: 100%;
 }
 
 .grid--1 {
