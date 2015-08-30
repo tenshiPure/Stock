@@ -4,6 +4,64 @@
     font-size: 2rem
 }
 
-#main {
-    padding: 0 13px;
+@media screen and (min-width: 321px) {
+    #main {
+        padding: 0 13px;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    #main {
+        padding: 0 5px;
+        width: 100%;
+    }
+}
+
+.grid--1 {
+    width: 8.333%;
+}
+
+.grid--2 {
+    width: 16.667%;
+}
+
+.grid--3 {
+    width: 25%;
+}
+
+.grid--4 {
+    width: 33.333%;
+}
+
+.grid--5 {
+    width: 41.666%;
+}
+
+.grid--6 {
+    width: 50%;
+}
+
+.grid--7 {
+    width: 58.333%;
+}
+
+.grid--8 {
+    width: 66.666%;
+}
+
+.grid--9 {
+    width: 75%;
+}
+
+.grid--10 {
+    width: 83.33%;
+}
+
+.grid--11 {
+    width: 91.666%;
+}
+
+.grid--12 {
+    width: 100%;
 }

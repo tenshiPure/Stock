@@ -1,45 +1,15 @@
 .stock
-    width: 330px
-    margin-bottom: 13px
     padding: 8px
     border: 1px solid black
     border-radius: 5px
 
+.stock
+    width: 100%
+    margin-bottom: 8px
+
+
 .stock__header
     font-size: 2rem
-
-
-.stock-desc
-    width: 100%
-
-.stock-desc__desc
-    width: 88%
-
-.stock-desc__icons
-    width: 12%
-
-.stock-presents
-    width: 100%
-
-.stock-presents__count
-    width: 10%
-    text-align: right
-
-.stock-presents__desc
-    width: 76%
-
-.stock-presents__icons
-    width: 12%
-
-
-.stock-timings
-    width: 100%
-
-.stock-timings__date
-    width: 88%
-
-.stock-timings__icons
-    width: 12%
 
 
 .stock__separator
