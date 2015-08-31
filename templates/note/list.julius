@@ -1,0 +1,12 @@
+$(function() {
+    $('.markdown').each(function() {
+        var origin = $(this).html();
+        var markdown = marked(trim(origin));
+
+        $(this).html(markdown);
+    });
+});
+
+trim = function(string) {
+    return string.replace(/<br>/g, '');
+};

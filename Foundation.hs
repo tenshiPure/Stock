@@ -163,3 +163,10 @@ createSettings attrs = FieldSettings {
                                fsAttrs = attrs,
                                fsTooltip = Nothing
                            }
+
+
+markdownWidget :: (MonadWidget m, HandlerSite m ~ App) => m ()
+markdownWidget = do
+    addScript $ StaticR js_highlight_js
+    addScript $ StaticR js_marked_js
+    addStylesheet $ StaticR css_github_css

@@ -4,12 +4,20 @@ $if null contents
 $else
     $forall (Entity noteId note) <- contents
         <div .content>
-            <div .header>
-                #{noteTitle note}
+            <table .grid--12>
+                <tr>
+                    <td .header .grid--11>
+                        #{noteTitle note}
+
+                    <td .grid--1>
+                        <a href=@{NoteUpdateR noteId}>
+                            <span class="glyphicon glyphicon-edit"></span>
+                        <a href=@{NoteDeleteR noteId}>
+                            <span class="glyphicon glyphicon-trash"></span>
 
             <hr .separator>
 
-            <div .markdown>
+            <div .markdown .grid--12>
                 #{noteBody note}
 
 <a href=@{NoteCreateR}>

@@ -1,0 +1,4 @@
+<form method=post action=@{route} enctype=#{enctype}>
+    ^{formWidget}
+    <div #preview>
+    <input .submit-button type=submit value=保存>

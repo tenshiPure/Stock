@@ -28,7 +28,6 @@ getInitR = do
     _ <- runDB $ insert $ Timing "9月末" (toSqlKey 2 :: StockId)
 
     _ <- runDB $ deleteWhere ([] :: [Filter Note])
-    _ <- runDB $ insert $ Note "FF13概要" (Textarea "パルスのファルスのルシがコクーンでパージ") now
-    _ <- runDB $ insert $ Note "サンプルマークダウン" (Textarea "+ a\n+ b\n+ c") now
+    _ <- runDB $ insert $ Note "FF13概要" (Textarea "**パルス**の**ファルス**の**ルシ**が**コクーン**で**パージ**") now
 
     redirect $ StockListR

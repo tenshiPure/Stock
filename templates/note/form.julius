@@ -1,0 +1,11 @@
+$(function() {
+    update();
+    $('textarea').keyup(update);
+});
+
+update = function() {
+    var origin = $('textarea').val();
+    var markdown = marked(origin);
+
+    $('#preview').html(markdown);
+};

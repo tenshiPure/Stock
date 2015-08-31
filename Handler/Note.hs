@@ -5,7 +5,7 @@ import Import
 
 
 fNote :: Maybe Note -> Html -> MForm Handler (FormResult Note, Widget)
-fNote mNote = renderDivs $ Note
+fNote mNote = renderTable $ Note
     <$> areq textField     (createSettings [("placeholder", "タイトル")])  (noteTitle <$> mNote)
     <*> areq textareaField (createSettings [("placeholder", "内容")])     (noteBody  <$> mNote)
     <*> lift (liftIO getCurrentTime)
@@ -17,9 +17,7 @@ getNoteListR = do
     let contents = notes
 
     defaultLayout $ do
-        addScript $ StaticR js_highlight_js
-        addScript $ StaticR js_marked_js
-        addStylesheet $ StaticR css_github_css
+        markdownWidget
 
         $(widgetFile "note/list")
 
@@ -27,8 +25,12 @@ getNoteListR = do
 getNoteCreateR :: Handler Html
 getNoteCreateR = do
     (formWidget, enctype) <- generateFormPost $ fNote Nothing
+    let route = NoteCreateR
 
-    defaultLayout $(widgetFile "note/create")
+    defaultLayout $ do
+        markdownWidget
+
+        $(widgetFile "note/form")
 
 
 postNoteCreateR :: Handler Html
@@ -46,8 +48,12 @@ getNoteUpdateR :: NoteId -> Handler Html
 getNoteUpdateR stockId = do
     note <- runDB $ get404 stockId
     (formWidget, enctype) <- generateFormPost $ fNote (Just note)
+    let route = NoteUpdateR stockId
 
-    defaultLayout $(widgetFile "note/update")
+    defaultLayout $ do
+        markdownWidget
+
+        $(widgetFile "note/form")
 
 
 postNoteUpdateR :: NoteId -> Handler Html
