@@ -82,6 +82,20 @@
     margin-bottom: 8px;
 }
 
+.content--2 {
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 49.5%;
+    margin-bottom: 8px;
+
+	float: left;
+}
+
+.content--2:nth-child(even) {
+	margin-left: 1%;
+}
+
 .header {
     font-size: 2rem;
 }

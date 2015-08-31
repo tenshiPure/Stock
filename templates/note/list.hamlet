@@ -6,8 +6,11 @@ $else
         <div .content>
             <table .grid--12>
                 <tr>
-                    <td .header .grid--11>
+                    <td .header .grid--9>
                         #{noteTitle note}
+
+                    <td .grid--2>
+                        #{format "%m/%d %H:%M" tz $ noteUpdated note}
 
                     <td .grid--1>
                         <a href=@{NoteUpdateR noteId}>

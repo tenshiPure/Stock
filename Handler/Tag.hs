@@ -20,8 +20,9 @@ getTagListR = do
 getTagCreateR :: Handler Html
 getTagCreateR = do
     (formWidget, enctype) <- generateFormPost $ fTag Nothing
+    let route = TagCreateR
 
-    defaultLayout $(widgetFile "tag/create")
+    defaultLayout $(widgetFile "tag/form")
 
 
 postTagCreateR :: Handler Html
@@ -39,8 +40,9 @@ getTagUpdateR :: TagId -> Handler Html
 getTagUpdateR tagId = do
     _tag <- runDB $ get404 tagId
     (formWidget, enctype) <- generateFormPost $ fTag (Just _tag)
+    let route = TagUpdateR tagId
 
-    defaultLayout $(widgetFile "tag/update")
+    defaultLayout $(widgetFile "tag/form")
 
 
 postTagUpdateR :: TagId -> Handler Html

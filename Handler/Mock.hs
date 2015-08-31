@@ -30,4 +30,9 @@ getInitR = do
     _ <- runDB $ deleteWhere ([] :: [Filter Note])
     _ <- runDB $ insert $ Note "FF13概要" (Textarea "**パルス**の**ファルス**の**ルシ**が**コクーン**で**パージ**") now
 
+    _ <- runDB $ deleteWhere ([] :: [Filter Tag])
+    _ <- runDB $ insert $ Tag "口座"
+    _ <- runDB $ insert $ Tag "メモ"
+    _ <- runDB $ insert $ Tag "銘柄"
+
     redirect $ StockListR

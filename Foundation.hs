@@ -10,6 +10,8 @@ import Yesod.Default.Util   (addStaticContentExternal)
 import Yesod.Core.Types     (Logger)
 import qualified Yesod.Core.Unsafe as Unsafe
 
+import Data.Time
+
 -- | The foundation datatype for your application. This can be a good place to
 -- keep settings and values requiring initialization before your application
 -- starts running, such as database connections. Every handler will have
@@ -170,3 +172,9 @@ markdownWidget = do
     addScript $ StaticR js_highlight_js
     addScript $ StaticR js_marked_js
     addStylesheet $ StaticR css_github_css
+
+
+format :: String -> TimeZone -> UTCTime -> String
+format _format timezone utctime = formatTime defaultTimeLocale _format zonedTime
+    where
+        zonedTime = utcToZonedTime timezone utctime

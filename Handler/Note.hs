@@ -2,6 +2,7 @@ module Handler.Note where
 
 
 import Import
+import Data.Time
 
 
 fNote :: Maybe Note -> Html -> MForm Handler (FormResult Note, Widget)
@@ -15,6 +16,8 @@ getNoteListR :: Handler Html
 getNoteListR = do
     notes <- runDB $ selectList [] [Asc NoteId]
     let contents = notes
+
+    tz <- liftIO getCurrentTimeZone
 
     defaultLayout $ do
         markdownWidget

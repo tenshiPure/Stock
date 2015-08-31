@@ -2,9 +2,18 @@ $if null contents
     <p>
         タグがありません
 $else
-    $forall (Entity tagId tag) <- contents
-        <div .note>
-            #{tagLabel tag}
+    <div .clearfix>
+        $forall (Entity tagId tag) <- contents
+            <div .content--2>
+                <table .grid--12>
+                    <tr>
+                        <td .header .grid--10>
+                            #{tagLabel tag}
+                        <td .grid--2>
+                            <a href=@{TagUpdateR tagId}>
+                                <span class="glyphicon glyphicon-edit"></span>
+                            <a href=@{TagDeleteR tagId}>
+                                <span class="glyphicon glyphicon-trash"></span>
 
 <a href=@{TagCreateR}>
     タグを追加
