@@ -2,6 +2,8 @@ module Handler.Note where
 
 
 import Import
+import Database.Persist.Sql(toSqlKey)
+import Prelude(read)
 import Data.Time
 
 
@@ -51,6 +53,12 @@ getNoteListR = do
         $(widgetFile "note/list")
 
 
+toKey :: Text -> TagId 
+toKey tTagId = toSqlKey (Prelude.read sTagId :: Int64)
+    where
+        sTagId = unpack tTagId
+
+
 getNoteCreateR :: Handler Html
 getNoteCreateR = do
     (formWidget, enctype) <- generateFormPost $ fNote Nothing
@@ -63,13 +71,18 @@ getNoteCreateR = do
         $(widgetFile "note/form")
 
 
--- todo
 postNoteCreateR :: Handler Html
 postNoteCreateR = do
     ((res, _), _) <- runFormPost $ fNote Nothing
     case res of
         FormSuccess note -> do
-            _ <- runDB $ insert note
+            noteId <- runDB $ insert note
+
+            tTagIds <- lookupPostParams "tag-ids[]"
+            forM_ (map toKey tTagIds) $ \tagId -> do
+                _ <- runDB $ insert $ Tagging noteId tagId
+                return ()
+
             redirect $ NoteListR
 
         _ -> redirect $ NoteListR
@@ -95,6 +108,14 @@ postNoteUpdateR noteId = do
     case res of
         FormSuccess note -> do
             _ <- runDB $ replace noteId note
+
+            _ <- runDB $ deleteWhere [TaggingNoteId ==. noteId]
+
+            tTagIds <- lookupPostParams "tag-ids[]"
+            forM_ (map toKey tTagIds) $ \tagId -> do
+                _ <- runDB $ insert $ Tagging noteId tagId
+                return ()
+
             redirect $ NoteListR
 
         _ -> redirect $ NoteListR

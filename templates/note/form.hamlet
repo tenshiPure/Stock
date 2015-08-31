@@ -7,5 +7,5 @@
         $forall (Entity tagId tag, isTagged) <- tags
             <label for=#{tagLabel tag}>
                 <div .tag>
-                    <input id=#{tagLabel tag} name=tag value=#{toIntId tagId} type=checkbox :isTagged:checked>
+                    <input id=#{tagLabel tag} name=tag-ids[] value=#{toIntId tagId} type=checkbox :isTagged:checked>
                     #{tagLabel tag}
