@@ -1,6 +1,6 @@
 $if null contents
     <p>
-        登録株式がありません
+        銘柄がありません
 $else
     $forall (Entity stockId stock, presents, timings) <- contents
         <div .content>
@@ -11,15 +11,14 @@ $else
 
             <hr .separator>
 
-            <table .grid--12>
-                <tr>
-                    <td .grid--11>
-                        #{stockDesc stock}
-                    <td .grid--1>
-                        <a href=@{StockUpdateR stockId}>
-                            <span class="glyphicon glyphicon-edit"></span>
-                        <a href=@{StockDeleteR stockId}>
-                            <span class="glyphicon glyphicon-trash"></span>
+            <ul .grid-items .grid--12>
+                <li .grid-item .grid--11>
+                    #{stockDesc stock}
+                <li .grid-item .grid--1>
+                    <a href=@{StockUpdateR stockId}>
+                        <span class="glyphicon glyphicon-edit"></span>
+                    <a href=@{StockDeleteR stockId}>
+                        <span class="glyphicon glyphicon-trash"></span>
 
             <div>
                 #{stockNote stock}
@@ -27,36 +26,34 @@ $else
             <hr .separator>
 
             $forall (Entity presentId present) <- presents
-                <table .grid--12>
-                    <tr>
-                        <td .grid--1>
-                            #{presentCount present}
-                        <td .grid--10>
-                            #{presentDesc present}
-                        <td .grid--1>
-                            <a href=@{PresentUpdateR presentId}>
-                                <span class="glyphicon glyphicon-edit"></span>
-                            <a href=@{PresentDeleteR presentId}>
-                                <span class="glyphicon glyphicon-trash"></span>
+                <ul .grid-items .grid--12>
+                    <li .grid-item .grid--1>
+                        #{presentCount present}
+                    <li .grid-item .grid--10>
+                        #{presentDesc present}
+                    <li .grid-item .grid--1>
+                        <a href=@{PresentUpdateR presentId}>
+                            <span class="glyphicon glyphicon-edit"></span>
+                        <a href=@{PresentDeleteR presentId}>
+                            <span class="glyphicon glyphicon-trash"></span>
 
-            <div .create>
+            <div>
                 <a href=@{PresentCreateR stockId}>
                     優待を追加
 
             <hr .separator>
 
             $forall (Entity timingId timing) <- timings
-                <table .grid--12>
-                    <tr>
-                        <td .grid--11>
-                            #{timingDate timing}
-                        <td .grid--1>
-                            <a href=@{TimingUpdateR timingId}>
-                                <span class="glyphicon glyphicon-edit"></span>
-                            <a href=@{TimingDeleteR timingId}>
-                                <span class="glyphicon glyphicon-trash"></span>
+                <ul .grid-items .grid--12>
+                    <li .grid-item .grid--11>
+                        #{timingDate timing}
+                    <li .grid-item .grid--1>
+                        <a href=@{TimingUpdateR timingId}>
+                            <span class="glyphicon glyphicon-edit"></span>
+                        <a href=@{TimingDeleteR timingId}>
+                            <span class="glyphicon glyphicon-trash"></span>
 
-            <div .create>
+            <div>
                 <a href=@{TimingCreateR stockId}>
                     権利確定日を追加
 

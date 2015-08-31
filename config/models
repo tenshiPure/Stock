@@ -27,3 +27,7 @@ Note
 
 Tag
     label  Text
+
+Tagging
+    noteId NoteId
+    tagId  TagId

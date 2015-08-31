@@ -32,7 +32,11 @@ getInitR = do
 
     _ <- runDB $ deleteWhere ([] :: [Filter Tag])
     _ <- runDB $ insert $ Tag "口座"
-    _ <- runDB $ insert $ Tag "メモ"
     _ <- runDB $ insert $ Tag "銘柄"
+    _ <- runDB $ insert $ Tag "メモ"
+
+    _ <- runDB $ deleteWhere ([] :: [Filter Tagging])
+    _ <- runDB $ insert $ Tagging (toSqlKey 1 :: NoteId) (toSqlKey 1 :: TagId)
+    _ <- runDB $ insert $ Tagging (toSqlKey 1 :: NoteId) (toSqlKey 2 :: TagId)
 
     redirect $ StockListR

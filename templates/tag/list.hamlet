@@ -5,15 +5,14 @@ $else
     <div .clearfix>
         $forall (Entity tagId tag) <- contents
             <div .content--2>
-                <table .grid--12>
-                    <tr>
-                        <td .header .grid--10>
-                            #{tagLabel tag}
-                        <td .grid--2>
-                            <a href=@{TagUpdateR tagId}>
-                                <span class="glyphicon glyphicon-edit"></span>
-                            <a href=@{TagDeleteR tagId}>
-                                <span class="glyphicon glyphicon-trash"></span>
+                <ul .grid-items .grid--12>
+                    <li .header .grid-item .grid--10>
+                        #{tagLabel tag}
+                    <li .grid-item .grid--2>
+                        <a href=@{TagUpdateR tagId}>
+                            <span class="glyphicon glyphicon-edit"></span>
+                        <a href=@{TagDeleteR tagId}>
+                            <span class="glyphicon glyphicon-trash"></span>
 
 <a href=@{TagCreateR}>
     タグを追加

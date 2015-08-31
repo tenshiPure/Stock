@@ -15,7 +15,12 @@ fNote mNote = renderTable $ Note
 getNoteListR :: Handler Html
 getNoteListR = do
     notes <- runDB $ selectList [] [Asc NoteId]
-    let contents = notes
+    contents <- forM notes $ \note -> do
+        taggings <- runDB $ selectList [TaggingNoteId ==. entityKey note] [Asc TaggingId]
+        let tagIds = map (taggingTagId . entityVal) taggings
+        tags <- runDB $ selectList [TagId <-. tagIds] [Asc TagId]
+
+        return (note, tags)
 
     tz <- liftIO getCurrentTimeZone
 

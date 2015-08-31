@@ -1,0 +1,10 @@
+.tags
+    margin-top: 5px
+
+.tag
+    padding: 3px
+    border: 1px solid black
+    border-radius: 5px
+
+.tag + .tag
+    margin-left: 0.5rem

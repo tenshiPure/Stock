@@ -2,25 +2,32 @@ $if null contents
     <p>
         メモがありません
 $else
-    $forall (Entity noteId note) <- contents
+    $forall (Entity noteId note, tags) <- contents
         <div .content>
-            <table .grid--12>
-                <tr>
-                    <td .header .grid--9>
-                        #{noteTitle note}
+            <ul .grid-items .grid--12>
+                <li .header .grid-item .grid--8>
+                    #{noteTitle note}
 
-                    <td .grid--2>
-                        #{format "%m/%d %H:%M" tz $ noteUpdated note}
+                <li .grid-item .grid--3>
+                    #{format "%m/%d %H:%M" tz $ noteUpdated note}
 
-                    <td .grid--1>
-                        <a href=@{NoteUpdateR noteId}>
-                            <span class="glyphicon glyphicon-edit"></span>
-                        <a href=@{NoteDeleteR noteId}>
-                            <span class="glyphicon glyphicon-trash"></span>
+                <li .grid-item .grid--1>
+                    <a href=@{NoteUpdateR noteId}>
+                        <span class="glyphicon glyphicon-edit"></span>
+                    <a href=@{NoteDeleteR noteId}>
+                        <span class="glyphicon glyphicon-trash"></span>
 
             <hr .separator>
 
-            <div .markdown .grid--12>
+            <ul .tags .grid-items .grid--12>
+                <li .grid-item .grid--12>
+                    $forall (Entity tagId tag) <- tags
+                        <span .tag>
+                            #{tagLabel tag}
+
+            <hr .separator>
+
+            <div .markdown>
                 #{noteBody note}
 
 <a href=@{NoteCreateR}>
