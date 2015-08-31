@@ -21,7 +21,7 @@ $else
 
             <ul .tags .grid-items .grid--12>
                 <li .grid-item .grid--12>
-                    $forall (Entity tagId tag) <- tags
+                    $forall (Entity _ tag) <- tags
                         <span .tag>
                             #{tagLabel tag}
 

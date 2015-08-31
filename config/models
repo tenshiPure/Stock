@@ -5,11 +5,12 @@ User
     deriving Typeable
 
 Stock
-    name Text
-    code Int
-    desc Text
-    url  Text
-    note Text
+    name        Text
+    code        Int
+    desc        Text
+    url         Text
+    note        Text
+    UniqueStock code
 
 Present
     count   Int
@@ -26,7 +27,8 @@ Note
     updated UTCTime
 
 Tag
-    label  Text
+    label     Text
+    UniqueTag label
 
 Tagging
     noteId NoteId

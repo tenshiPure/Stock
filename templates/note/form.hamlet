@@ -3,3 +3,9 @@
     <div #preview>
     <span>
     <input .submit-button type=submit value=保存>
+    <div #tags .clearfix>
+        $forall (Entity tagId tag, isTagged) <- tags
+            <label for=#{tagLabel tag}>
+                <div .tag>
+                    <input id=#{tagLabel tag} name=tag value=#{toIntId tagId} type=checkbox :isTagged:checked>
+                    #{tagLabel tag}

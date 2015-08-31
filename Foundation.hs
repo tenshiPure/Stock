@@ -1,7 +1,7 @@
 module Foundation where
 
 import Import.NoFoundation
-import Database.Persist.Sql (ConnectionPool, runSqlPool)
+import Database.Persist.Sql (ConnectionPool, runSqlPool, fromSqlKey)
 import Text.Hamlet          (hamletFile)
 import Text.Jasmine         (minifym)
 import Yesod.Auth.BrowserId (authBrowserId)
@@ -178,3 +178,7 @@ format :: String -> TimeZone -> UTCTime -> String
 format _format timezone utctime = formatTime defaultTimeLocale _format zonedTime
     where
         zonedTime = utcToZonedTime timezone utctime
+
+
+toIntId :: ToBackendKey SqlBackend record => Key record -> Int64
+toIntId = fromSqlKey
