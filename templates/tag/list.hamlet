@@ -1,0 +1,10 @@
+$if null contents
+    <p>
+        タグがありません
+$else
+    $forall (Entity tagId tag) <- contents
+        <div .note>
+            #{tagLabel tag}
+
+<a href=@{TagCreateR}>
+    タグを追加

@@ -1,3 +1,6 @@
+/**
+ * フレームレイアウト
+ */
 #nav {
     height: 55px;
     padding: 13px 13px 0 13px;
@@ -5,10 +8,13 @@
 }
 
 #main {
-    padding: 0 8px;
+    padding: 0 8px 8px 8px;
     width: 100%;
 }
 
+/**
+ * グリッド
+ */
 .grid--1 {
     width: 8.333%;
 }
@@ -55,4 +61,35 @@
 
 .grid--12 {
     width: 100%;
+}
+
+
+/**
+ * コンテンツ
+ */
+.content {
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.header {
+    font-size: 2rem;
+}
+
+.separator {
+    margin: 8px 0;
+}
+
+.create {
+    margin-top: 5px;
+}
+
+/**
+ * マークダウン
+ */
+.markdown {
+    white-space: nowarap
 }

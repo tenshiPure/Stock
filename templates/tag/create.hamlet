@@ -1,0 +1,3 @@
+<form method=post action=@{TagCreateR} enctype=#{enctype}>
+    ^{formWidget}
+    <input .submit-button type=submit value=作成>

@@ -20,3 +20,13 @@
 /timing/delete/#TimingId TimingDeleteR GET
 
 /init InitR GET
+
+/notes               NoteListR   GET
+/note/create         NoteCreateR GET POST
+/note/update/#NoteId NoteUpdateR GET POST
+/note/delete/#NoteId NoteDeleteR GET
+
+/tags              TagListR   GET
+/tag/create        TagCreateR GET POST
+/tag/update/#TagId TagUpdateR GET POST
+/tag/delete/#TagId TagDeleteR GET

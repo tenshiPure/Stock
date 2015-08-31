@@ -19,3 +19,11 @@ Present
 Timing
     date    Text
     stockId StockId
+
+Note
+    title   Text
+    body    Textarea
+    updated UTCTime
+
+Tag
+    label  Text

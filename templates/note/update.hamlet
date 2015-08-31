@@ -1,0 +1,3 @@
+<form method=post action=@{NoteUpdateR stockId} enctype=#{enctype}>
+    ^{formWidget}
+    <input .submit-button type=submit value=更新>

@@ -9,7 +9,7 @@ fStock mStock = renderDivs $ Stock
     <$> areq textField (createSettings [("placeholder", "銘柄名")])     (stockName <$> mStock)
     <*> areq intField  (createSettings [("placeholder", "証券コード")]) (stockCode <$> mStock)
     <*> areq textField (createSettings [("placeholder", "会社概要")])   (stockDesc <$> mStock)
-    <*> areq urlField  (createSettings [("placeholder", "URL")])        (stockUrl <$> mStock)
+    <*> areq urlField  (createSettings [("placeholder", "URL")])        (stockUrl  <$> mStock)
     <*> areq textField (createSettings [("placeholder", "コメント")])   (stockNote <$> mStock)
 
 

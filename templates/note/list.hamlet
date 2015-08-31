@@ -1,0 +1,16 @@
+$if null contents
+    <p>
+        メモがありません
+$else
+    $forall (Entity noteId note) <- contents
+        <div .content>
+            <div .header>
+                #{noteTitle note}
+
+            <hr .separator>
+
+            <div .markdown>
+                #{noteBody note}
+
+<a href=@{NoteCreateR}>
+    メモを追加

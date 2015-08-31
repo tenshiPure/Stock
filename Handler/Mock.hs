@@ -7,6 +7,8 @@ import Database.Persist.Sql(toSqlKey)
 
 getInitR :: Handler Html
 getInitR = do
+    now <- liftIO getCurrentTime
+
     _ <- runDB $ deleteWhere ([] :: [Filter Stock])
     _ <- runDB $ insert $ Stock "ノバレーゼ" 2128 "結婚式場の運営" "http://www.novarese.co.jp/corp/" "高め、28ページ"
     _ <- runDB $ insert $ Stock "元気寿司" 9828 "回転寿司店" "http://www.genkisushi.co.jp/" "良さげ、148ページ"
@@ -24,5 +26,9 @@ getInitR = do
     _ <- runDB $ insert $ Timing "12月末" (toSqlKey 1 :: StockId)
     _ <- runDB $ insert $ Timing "3月末" (toSqlKey 2 :: StockId)
     _ <- runDB $ insert $ Timing "9月末" (toSqlKey 2 :: StockId)
+
+    _ <- runDB $ deleteWhere ([] :: [Filter Note])
+    _ <- runDB $ insert $ Note "FF13概要" (Textarea "パルスのファルスのルシがコクーンでパージ") now
+    _ <- runDB $ insert $ Note "サンプルマークダウン" (Textarea "+ a\n+ b\n+ c") now
 
     redirect $ StockListR

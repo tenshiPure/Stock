@@ -12,6 +12,10 @@
         <div #nav>
             <a href=@{StockListR}>
                 株式一覧
+            <a href=@{NoteListR}>
+                メモ一覧
+            <a href=@{TagListR}>
+                タグ一覧
 
         <div #main>
             ^{pageBody pc}

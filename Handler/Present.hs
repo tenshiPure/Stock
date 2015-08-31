@@ -7,7 +7,7 @@ import Import
 fPresent :: Maybe Present -> StockId -> Html -> MForm Handler (FormResult Present, Widget)
 fPresent mPresent stockId = renderDivs $ Present
     <$> areq intField    (createSettings [("placeholder", "成立数")]) (presentCount <$> mPresent)
-    <*> areq textField   (createSettings [("placeholder", "内容")])   (presentDesc <$> mPresent)
+    <*> areq textField   (createSettings [("placeholder", "内容")])   (presentDesc  <$> mPresent)
     <*> areq hiddenField ""                                           (Just stockId)
 
 

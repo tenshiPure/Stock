@@ -24,6 +24,8 @@ library
                      Handler.Stock
                      Handler.Present
                      Handler.Timing
+                     Handler.Note
+                     Handler.Tag
                      Handler.Mock
 
     if flag(dev) || flag(library-only)

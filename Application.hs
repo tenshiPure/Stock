@@ -34,6 +34,8 @@ import Handler.Common
 import Handler.Stock
 import Handler.Present
 import Handler.Timing
+import Handler.Note
+import Handler.Tag
 import Handler.Mock
 
 -- This line actually creates our YesodDispatch instance. It is the second half

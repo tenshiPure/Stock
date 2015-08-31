@@ -3,13 +3,13 @@ $if null contents
         登録株式がありません
 $else
     $forall (Entity stockId stock, presents, timings) <- contents
-        <div .stock>
-            <div .stock__header>
+        <div .content>
+            <div .header>
                 #{stockCode stock}
                 <a href=#{stockUrl stock}>
                     #{stockName stock}
 
-            <hr .stock__separator>
+            <hr .separator>
 
             <table .grid--12>
                 <tr>
@@ -21,10 +21,10 @@ $else
                         <a href=@{StockDeleteR stockId}>
                             <span class="glyphicon glyphicon-trash"></span>
 
-            <div .stock__note>
+            <div>
                 #{stockNote stock}
 
-            <hr .stock__separator>
+            <hr .separator>
 
             $forall (Entity presentId present) <- presents
                 <table .grid--12>
@@ -43,7 +43,7 @@ $else
                 <a href=@{PresentCreateR stockId}>
                     優待を追加
 
-            <hr .stock__separator>
+            <hr .separator>
 
             $forall (Entity timingId timing) <- timings
                 <table .grid--12>
