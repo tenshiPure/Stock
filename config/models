@@ -24,6 +24,7 @@ Timing
 Note
     title   Text
     body    Textarea
+    created UTCTime
     updated UTCTime
 
 Tag

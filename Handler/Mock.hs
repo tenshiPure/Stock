@@ -32,7 +32,7 @@ testdata = do
     _ <- runDB $ insert $ Timing "9月末" (toSqlKey 2 :: StockId)
 
     _ <- runDB $ deleteWhere ([] :: [Filter Note])
-    _ <- runDB $ insert $ Note "FF13概要" (Textarea "**パルス**の**ファルス**の**ルシ**が**コクーン**で**パージ**") now
+    _ <- runDB $ insert $ Note "FF13概要" (Textarea "**パルス**の**ファルス**の**ルシ**が**コクーン**で**パージ**") now now
 
     _ <- runDB $ deleteWhere ([] :: [Filter Tag])
     _ <- runDB $ insert $ Tag "口座"

@@ -7,10 +7,16 @@ import Prelude(read)
 
 
 fNote :: Maybe Note -> Html -> MForm Handler (FormResult Note, Widget)
-fNote mNote = renderTable $ Note
-    <$> areq textField     (createSettings [("placeholder", "タイトル")]) (noteTitle <$> mNote)
-    <*> areq textareaField (createSettings [("placeholder", "内容")])     (noteBody  <$> mNote)
-    <*> lift (liftIO getCurrentTime)
+fNote mNote = do
+    renderTable $ Note
+        <$> areq textField     (createSettings [("placeholder", "タイトル")]) (noteTitle <$> mNote)
+        <*> areq textareaField (createSettings [("placeholder", "内容")])     (noteBody  <$> mNote)
+        <*> lift created
+        <*> lift (liftIO getCurrentTime)
+    where
+        created = case mNote of
+            Just note -> liftIO (return $ noteCreated note)
+            Nothing   -> liftIO getCurrentTime
 
 
 getTags :: HandlerT App IO [((Entity Tag), Bool)]
@@ -104,7 +110,8 @@ getNoteUpdateR noteId = do
 
 postNoteUpdateR :: NoteId -> Handler Html
 postNoteUpdateR noteId = do
-    ((res, _), _) <- runFormPost $ fNote Nothing
+    _note <- runDB $ get404 noteId
+    ((res, _), _) <- runFormPost $ fNote (Just _note)
 
     case res of
         FormSuccess note -> do

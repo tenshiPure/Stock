@@ -6,7 +6,8 @@
                     {{ content.note.title }}
 
                 <li .grid-item .grid--3>
-                    {{ content.note.date }}
+                    作成：{{ content.note.created | date:'yyyy-MM-dd HH:mm' }}<br>
+                    更新：{{ content.note.updated | date:'yyyy-MM-dd HH:mm' }}
 
                 <li .grid-item .grid--1>
                     <a href="/note/update/{{ content.note.id }}">

@@ -61,11 +61,12 @@ instance ToJSON NoteItem where
 
 
 instance ToJSON (Entity Note) where
-    toJSON (Entity noteId (Note title body date)) = object [ "id"    .= noteId,
-                                                             "title" .= title,
-                                                             "body"  .= body,
-                                                             "date"  .= date
-                                                           ]
+    toJSON (Entity noteId (Note title body created updated)) = object [ "id"      .= noteId,
+                                                                        "title"   .= title,
+                                                                        "body"    .= body,
+                                                                        "created" .= created,
+                                                                        "updated" .= updated
+                                                                      ]
 
 
 instance ToJSON (Entity Tag) where
