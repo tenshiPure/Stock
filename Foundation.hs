@@ -65,6 +65,7 @@ instance Yesod App where
 
         pc <- widgetToPageContent $ do
             addScript $ StaticR js_jquery_js
+            addScript $ StaticR js_angular_js
             addStylesheet $ StaticR css_bootstrap_css
             addStylesheet $ StaticR css_default_css
             $(widgetFile "default-layout")

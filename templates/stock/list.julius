@@ -1,0 +1,10 @@
+angular.module('App', []).controller('StockController', ['$scope', '$http', function ($scope, $http) {
+    $http({
+        method : 'GET',
+        url    : '/stocks'
+    }).success(function(data) {
+        $scope.stocks = data;
+
+    }).error(function(data) {
+    });
+}]);
