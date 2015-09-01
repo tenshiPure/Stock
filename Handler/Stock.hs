@@ -16,19 +16,11 @@ fStock mStock = renderDivs $ Stock
 getStocksR :: Handler Value
 getStocksR = do
     stocks <- runDB $ selectList [] [Asc StockId]
-    contents <- forM stocks $ \eStock -> do
-        let stockId = entityKey eStock
-        let stock =   entityVal eStock
+    contents <- forM stocks $ \stock -> do
+        presents <- runDB $ selectList [PresentStockId ==. entityKey stock] [Asc PresentCount]
+        timings  <- runDB $ selectList [TimingStockId  ==. entityKey stock] [Asc TimingDate]
 
-        ePresents <- runDB $ selectList [PresentStockId ==. stockId] [Asc PresentCount]
-        let presentIds = map entityKey ePresents
-        let presents   = map entityVal ePresents
-
-        eTimings <- runDB $ selectList [TimingStockId ==. stockId] [Asc TimingDate]
-        let timingIds = map entityKey eTimings
-        let timings   = map entityVal eTimings
-
-        return $ StockItem (stockName stock) (stockCode stock) (stockDesc stock) (stockUrl stock) (stockNote stock) (zip presentIds presents) (zip timingIds timings)
+        return $ StockItem stock presents timings
 
     returnJson contents
 

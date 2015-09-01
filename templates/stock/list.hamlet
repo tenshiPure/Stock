@@ -1,55 +1,56 @@
 <div ng-controller="StockController">
-    <div .content ng-repeat="stock in stocks">
-        <div .header>
-            {{ stock.code }}
-            <a href="{{ stock.url }}">
-                {{ stock.name }}
+    <div .content ng-repeat="content in contents">
+        <ul .grid-items .grid--12>
+            <li .header .grid-item .grid--1>
+                {{ content.stock.code }}
+            <li .header .grid-item .grid--10>
+                <a href="{{ content.stock.url }}">
+                    {{ content.stock.name }}
+            <li .grid-item .grid--1>
+                <a href="/stock/update/{{ content.stock.id }}">
+                    <span class="glyphicon glyphicon-edit"></span>
+                <a href="/stock/delete/{{ content.stock.id }}">
+                    <span class="glyphicon glyphicon-trash"></span>
 
         <hr .separator>
-
-        <ul .grid-items .grid--12>
-            <li .grid-item .grid--11>
-                {{ stock.desc }}
-            <li .grid-item .grid--1>
-            <a href=/stock/update/1>
-                <span class="glyphicon glyphicon-edit"></span>
-            <a href=/stock/delete/1>
-                <span class="glyphicon glyphicon-trash"></span>
 
         <div>
-            {{ stock.note }}
+            {{ content.stock.desc }}
+
+        <div>
+            {{ content.stock.note }}
 
         <hr .separator>
 
-        <ul .grid-items .grid--12 ng-repeat="present in stock.presents">
+        <ul .grid-items .grid--12 ng-repeat="present in content.presents">
             <li .grid-item .grid--1>
-                {{ present[1].count }}
+                {{ present.count }}
             <li .grid-item .grid--10>
-                {{ present[1].desc }}
+                {{ present.desc }}
             <li .grid-item .grid--1>
-                <a href="/present/update/{{ present[0] }}">
+                <a href="/present/update/{{ present.id }}">
                     <span class="glyphicon glyphicon-edit"></span>
-                <a href="/present/delete/{{ present[0] }}">
+                <a href="/present/delete/{{ present.id }}">
                     <span class="glyphicon glyphicon-trash"></span>
 
-    <div>
-        <a href=/present/create/1>
-            優待を追加
+        <div>
+            <a href=/present/create/1>
+                優待を追加
 
         <hr .separator>
 
-        <ul .grid-items .grid--12 ng-repeat="timing in stock.timings">
+        <ul .grid-items .grid--12 ng-repeat="timing in content.timings">
             <li .grid-item .grid--11>
-                {{ timing[1].date }}
+                {{ timing.date }}
             <li .grid-item .grid--1>
-                <a href="/timing/update/{{ timing[0] }}">
+                <a href="/timing/update/{{ timing.id }}">
                     <span class="glyphicon glyphicon-edit"></span>
-                <a href="/timing/delete/{{ timing[0] }}">
+                <a href="/timing/delete/{{ timing.id }}">
                     <span class="glyphicon glyphicon-trash"></span>
 
-    <div>
-        <a href=/timing/create/1>
-            権利確定日を追加
+        <div>
+            <a href=/timing/create/1>
+                権利確定日を追加
 
 <a href=@{StockCreateR}>
     株式を追加

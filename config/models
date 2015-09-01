@@ -12,12 +12,12 @@ Stock
     note        Text
     UniqueStock code
 
-Present json
+Present
     count   Int
     desc    Text
     stockId StockId
 
-Timing json
+Timing
     date    Text
     stockId StockId
 

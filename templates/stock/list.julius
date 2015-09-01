@@ -3,7 +3,7 @@ angular.module('App', []).controller('StockController', ['$scope', '$http', func
         method : 'GET',
         url    : '/stocks'
     }).success(function(data) {
-        $scope.stocks = data;
+        $scope.contents = data;
 
     }).error(function(data) {
     });

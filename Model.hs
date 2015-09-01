@@ -13,22 +13,37 @@ share [mkPersist sqlSettings, mkMigrate "migrateAll"]
     $(persistFileWith lowerCaseSettings "config/models")
 
 
-data StockItem = StockItem { name     :: Text,
-                             code     :: Int,
-                             desc     :: Text,
-                             url      :: Text,
-                             note     :: Text,
-                             presents :: [(PresentId, Present)],
-                             timings  :: [(TimingId, Timing)]
+data StockItem = StockItem { stock      :: (Entity Stock),
+                             presents   :: [(Entity Present)],
+                             timings    :: [(Entity Timing)]
                            }
 
 
 instance ToJSON StockItem where
-    toJSON (StockItem name code desc url note presents timings) = object [ "name"     .= name,
-                                                                           "code"     .= code,
-                                                                           "desc"     .= desc,
-                                                                           "url"      .= url,
-                                                                           "note"     .= note,
-                                                                           "presents" .= presents,
-                                                                           "timings"  .= timings
-                                                                         ]
+    toJSON (StockItem stock presents timings) = object [ "stock"    .= stock,
+                                                         "presents" .= presents,
+                                                         "timings"  .= timings
+                                                       ]
+
+
+instance ToJSON (Entity Stock) where
+    toJSON (Entity stockId (Stock name code desc url note)) = object [ "id"   .= stockId,
+                                                                       "name" .= name,
+                                                                       "code" .= code,
+                                                                       "desc" .= desc,
+                                                                       "url"  .= url,
+                                                                       "note" .= note
+                                                                     ]
+
+
+instance ToJSON (Entity Present) where
+    toJSON (Entity presentId (Present _count desc _)) = object [ "id"   .= presentId,
+                                                                "count" .= _count,
+                                                                "desc"  .= desc
+                                                              ]
+
+
+instance ToJSON (Entity Timing) where
+    toJSON (Entity timingId (Timing date _)) = object [ "id"   .= timingId,
+                                                        "date" .= date
+                                                      ]
