@@ -6,7 +6,8 @@
 
 / RootR GET
 
-/stocks                StockListR   GET
+/stocks                StocksR      GET
+/stock/list            StockListR   GET
 /stock/create          StockCreateR GET POST
 /stock/update/#StockId StockUpdateR GET POST
 /stock/delete/#StockId StockDeleteR GET
@@ -21,12 +22,12 @@
 
 /init InitR GET
 
-/notes               NoteListR   GET
+/note/list           NoteListR   GET
 /note/create         NoteCreateR GET POST
 /note/update/#NoteId NoteUpdateR GET POST
 /note/delete/#NoteId NoteDeleteR GET
 
-/tags              TagListR   GET
+/tag/list          TagListR   GET
 /tag/create        TagCreateR GET POST
 /tag/update/#TagId TagUpdateR GET POST
 /tag/delete/#TagId TagDeleteR GET
