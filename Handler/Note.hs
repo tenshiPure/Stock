@@ -4,12 +4,11 @@ module Handler.Note where
 import Import
 import Database.Persist.Sql(toSqlKey)
 import Prelude(read)
-import Data.Time
 
 
 fNote :: Maybe Note -> Html -> MForm Handler (FormResult Note, Widget)
 fNote mNote = renderTable $ Note
-    <$> areq textField     (createSettings [("placeholder", "タイトル")])  (noteTitle <$> mNote)
+    <$> areq textField     (createSettings [("placeholder", "タイトル")]) (noteTitle <$> mNote)
     <*> areq textareaField (createSettings [("placeholder", "内容")])     (noteBody  <$> mNote)
     <*> lift (liftIO getCurrentTime)
 
@@ -35,18 +34,20 @@ getTagsByNoteId noteId = do
     return tags
 
 
-getNoteListR :: Handler Html
-getNoteListR = do
+getNotesR :: Handler Value
+getNotesR = do
     notes <- runDB $ selectList [] [Asc NoteId]
     contents <- forM notes $ \note -> do
         taggings <- runDB $ selectList [TaggingNoteId ==. entityKey note] [Asc TaggingId]
         let tagIds = map (taggingTagId . entityVal) taggings
         tags <- runDB $ selectList [TagId <-. tagIds] [Asc TagId]
 
-        return (note, tags)
+        return $ NoteItem note tags
 
-    tz <- liftIO getCurrentTimeZone
+    returnJson contents
 
+getNoteListR :: Handler Html
+getNoteListR = do
     defaultLayout $ do
         markdownWidget
 

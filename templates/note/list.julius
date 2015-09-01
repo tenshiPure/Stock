@@ -1,11 +1,18 @@
-$(function() {
-    $('.markdown').each(function() {
-        var origin = $(this).html();
-        var markdown = marked(trim(origin));
+angular.module('App', ['ngSanitize']).controller('NoteController', ['$scope', '$http', function ($scope, $http) {
+    $http({
+        method : 'GET',
+        url    : '/notes'
+    }).success(function(data) {
+        $scope.contents = data;
 
-        $(this).html(markdown);
+    }).error(function(data) {
     });
-});
+
+    $scope.marked = function(markdown) {
+        return marked(trim(markdown));
+    };
+}]);
+
 
 trim = function(string) {
     return string.replace(/<br>/g, '');

@@ -10,8 +10,6 @@ import Yesod.Default.Util   (addStaticContentExternal)
 import Yesod.Core.Types     (Logger)
 import qualified Yesod.Core.Unsafe as Unsafe
 
-import Data.Time
-
 -- | The foundation datatype for your application. This can be a good place to
 -- keep settings and values requiring initialization before your application
 -- starts running, such as database connections. Every handler will have
@@ -66,6 +64,7 @@ instance Yesod App where
         pc <- widgetToPageContent $ do
             addScript $ StaticR js_jquery_js
             addScript $ StaticR js_angular_js
+            addScript $ StaticR js_angular_sanitize_js
             addStylesheet $ StaticR css_bootstrap_css
             addStylesheet $ StaticR css_default_css
             $(widgetFile "default-layout")
@@ -173,12 +172,6 @@ markdownWidget = do
     addScript $ StaticR js_highlight_js
     addScript $ StaticR js_marked_js
     addStylesheet $ StaticR css_github_css
-
-
-format :: String -> TimeZone -> UTCTime -> String
-format _format timezone utctime = formatTime defaultTimeLocale _format zonedTime
-    where
-        zonedTime = utcToZonedTime timezone utctime
 
 
 toIntId :: ToBackendKey SqlBackend record => Key record -> Int64

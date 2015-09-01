@@ -47,3 +47,28 @@ instance ToJSON (Entity Timing) where
     toJSON (Entity timingId (Timing date _)) = object [ "id"   .= timingId,
                                                         "date" .= date
                                                       ]
+
+
+data NoteItem = NoteItem { note :: (Entity Note),
+                           tags :: [(Entity Tag)]
+                         }
+
+
+instance ToJSON NoteItem where
+    toJSON (NoteItem note tags) = object [ "note" .= note,
+                                           "tags" .= tags
+                                         ]
+
+
+instance ToJSON (Entity Note) where
+    toJSON (Entity noteId (Note title body date)) = object [ "id"    .= noteId,
+                                                             "title" .= title,
+                                                             "body"  .= body,
+                                                             "date"  .= date
+                                                           ]
+
+
+instance ToJSON (Entity Tag) where
+    toJSON (Entity tagId (Tag label)) = object [ "id"     .= tagId,
+                                                 "label" .= label
+                                               ]

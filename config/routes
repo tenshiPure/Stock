@@ -22,6 +22,7 @@
 
 /init InitR GET
 
+/notes               NotesR      GET
 /note/list           NoteListR   GET
 /note/create         NoteCreateR GET POST
 /note/update/#NoteId NoteUpdateR GET POST

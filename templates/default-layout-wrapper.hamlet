@@ -17,5 +17,5 @@
             <a href=@{TagListR}>
                 タグ一覧
 
-        <div #main ng-app=App>
+        <div #main>
             ^{pageBody pc}
