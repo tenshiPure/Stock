@@ -6,7 +6,11 @@ import Database.Persist.Sql(toSqlKey)
 
 
 getInitR :: Handler Html
-getInitR = do
+getInitR = production
+
+
+testdata :: Handler Html
+testdata = do
     now <- liftIO getCurrentTime
 
     _ <- runDB $ deleteWhere ([] :: [Filter Stock])
@@ -40,3 +44,8 @@ getInitR = do
     _ <- runDB $ insert $ Tagging (toSqlKey 1 :: NoteId) (toSqlKey 2 :: TagId)
 
     redirect $ StockListR
+
+
+production :: Handler Html
+production = do
+    error "production mode"
